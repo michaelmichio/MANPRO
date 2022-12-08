@@ -1,0 +1,29 @@
+{
+  "name": "manpro",
+  "version": "1.0.0",
+  "description": "Tubes manpro",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmichio/MANPRO.git"
+  },
+  "author": "Michael,Hizkia,Andrianho",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/michaelmichio/MANPRO/issues"
+  },
+  "homepage": "https://github.com/michaelmichio/MANPRO#readme"
+}

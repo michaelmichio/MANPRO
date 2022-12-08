@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    </head>
+    <body>
+
+    
+        <h1 >Halaman Grafik Bar</h1>
+        
+        <form>
+            <label for="Buku">Silahkan pilih Buku :</label><br>
+            <select name="Buku" id="Buku">
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option>
+            </select>
+        </form>
+        <%let x = []%>
+        <%let y = []%>
+        <%for(let i of hasil){%>
+            <%x.push(i.target)%>
+            <%y.push(i.weight)%>
+        <%}%>
+        <p id="contoh"><%=JSON.stringify(x)%></p>
+        <h3>Hasil Grafik</h3>
+        <canvas id="hasilGrafik" width="5" height="2"></canvas>
+        
+    <script>
+        const ctx = document.getElementById('hasilGrafik').getContext('2d');
+        let xValues = <%-JSON.stringify(x)%>;
+        let yValues = <%-JSON.stringify(y)%>;
+        // for(let i=0;i<10;i++){
+        //     xValues[0]=xValues[0].replace('&#34;','"')
+        // }
+            const barColors = ["red","yellow","blue","orange","white","black","black","black","black","black"];
+       const chart = new Chart(ctx,{
+      type : "bar",
+      data :{
+        labels : xValues,
+        datasets :[{
+          backgroundColor : barColors,
+          data : yValues
+        }]
+      },
+      options:{
+        scales:{
+          yAxes:[{
+            ticks :{
+              beginAtZero : true
+            }
+          }]
+        },
+        legend : {display : false},
+        title :{
+          display : true,
+          text : "Hasil Grafik"
+        }
+      }
+    })
+    </script>
+    </body>
+</html>
+           
