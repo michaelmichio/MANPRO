@@ -3,6 +3,7 @@ import mysql from "mysql"
 import path from "path";
 const app = express();
 
+app.use(express.static(path.resolve('public')));
 app.set("view engine","ejs");
 const pool = mysql.createPool({
     host:'localhost',
@@ -40,15 +41,15 @@ const cariTopTenKarakter = (conn,masukan)=>{
 }
 
 app.get('/',async(req,res)=>{
-    res.sendFile('home/index.html',{root:'.'});
+    res.sendFile('index.html',{root:'.'});
 })
-app.get('/GrafikBar/:buku',async(req,res)=>{
+app.get('/GrafikBar/',async(req,res)=>{
     const conn = await dbConnect();
-    const {buku} = req.params;
-    const hasil = await cariTopTenKarakter(conn,buku);
+    const hasil = await cariTopTenKarakter(conn,req.query.Buku);
     const contoh ="A";
     res.render('GrafikBar',{
-        hasil
+        hasil,
+        buku:req.query.Buku
     })
 })
 
