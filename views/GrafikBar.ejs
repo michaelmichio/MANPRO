@@ -47,10 +47,10 @@
         <%let x = []%>
         <%let y = []%>
         <%for(let i of hasil){%>
-            <%x.push(i.target)%>
+            <%x.push(i.source)%>
             <%y.push(i.weight)%>
         <%}%>
-        <h3>TOP-10 karakter yang paling banyak berinteraksi dengan karakter lain</h3>
+        <h3>TOP-10 karakter yang paling banyak berinteraksi dengan karakter lain di buku <%=buku%></h3>
         <canvas id="hasilGrafik" width="5" height="2"></canvas>
         
     <script>
@@ -60,7 +60,7 @@
         // for(let i=0;i<10;i++){
         //     xValues[0]=xValues[0].replace('&#34;','"')
         // }
-            const barColors = ["red","yellow","blue","orange","white","black","black","black","black","black"];
+            const barColors = ["purple","purple","purple","purple","purple","purple","purple","purple","purple","purple"];
        const chart = new Chart(ctx,{
       type : "bar",
       data :{

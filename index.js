@@ -28,7 +28,7 @@ const dbConnect = ()=>{
 
 const cariTopTenKarakter = (conn,masukan)=>{
     return new Promise((resolve,reject)=>{
-        conn.query('Select interaksi.target,interaksi.weight FROM interaksi WHERE interaksi.weight>3 AND book=? LIMIT 10',masukan,
+        conn.query('SELECT source,sum(weight) as weight FROM interaksi WHERE book=? GROUP BY source ORDER BY sum(weight) DESC LIMIT 10',masukan,
         (err,result)=>{
             if(err){
                 reject(err);
