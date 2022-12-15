@@ -1,0 +1,112 @@
+$primary-color:#ffffff;
+$secondary-color:#8E8D8D;
+$third-color:#000000;
+
+.header-section-wraper{
+    background-color: #000000;
+    padding: 1em;
+    z-index: 1;
+    position: relative;
+    overflow-y: hidden;
+}
+.header-section-title-wraper{
+.header-section-title{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 70px;
+    color: $primary-color;
+    font-weight: 700;  
+ }
+ .header-section-image{
+    width: 1646px;
+    height: 660px;
+    position: absolute;
+    margin-left: -350px;
+    z-index: -1;
+    margin-top: -50px;
+ }
+ .header-section-margin{
+    margin-top: 200px;
+ }
+}
+
+/* From 320px and up */
+@media (min-width: 320px) {
+    
+}
+
+/* From 768px and up */
+@media (min-width: 768px) {
+ 
+}
+
+/* From 1024px and up */
+@media (min-width: 1024px) {
+ 
+}
+
+/* From 1224px and up */
+@media (min-width: 1224px) {
+    .header-section-wraper{
+        background-color: #000000;
+        padding: 1em;
+        z-index: 1;
+        position: relative;
+        overflow-y: hidden;
+    }
+    .header-section-title-wraper{
+    .header-section-title{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 70px;
+        color: $primary-color;
+        font-weight: 700;  
+     }
+     .header-section-image{
+        width: 1646px;
+        height: 660px;
+        position: absolute;
+        margin-left: -550px;
+        z-index: -1;
+        margin-top: -50px;
+     }
+     .header-section-margin{
+        margin-top: 200px;
+     }
+    }
+}
+
+/* From 1824px and up */
+@media (min-width: 1824px) {
+    .header-section-wraper{
+        background-color: #000000;
+        padding: 1em;
+        z-index: 1;
+        position: relative;
+        overflow-y: hidden;
+    }
+    .header-section-title-wraper{
+    .header-section-title{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 70px;
+        color: $primary-color;
+        font-weight: 700;  
+     }
+     .header-section-image{
+        width: 1646px;
+        height: 660px;
+        position: absolute;
+        margin-left: -350px;
+        z-index: -1;
+        margin-top: -50px;
+     }
+     .header-section-margin{
+        margin-top: 200px;
+     }
+    }
+  
+}
+
+/*  max-width query */
+/* From 850px and up, until 950px  */
+@media (min-width: 850px) and (max-width: 950px) {
+ 
+}

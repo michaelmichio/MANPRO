@@ -1,0 +1,21 @@
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 16px;
+    color: black;
+    font-style: italic;
+    border-radius: 10px;
+    min-height: 70px;
+  }
+  .label-header{
+    font-size: 15px;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+    color: white;
+  }
