@@ -58,5 +58,8 @@ app.get('/GrafikBar/', async(req, res) => {
         buku:req.query.Buku
     })
 })
+app.get('/search', async(req, res) => {
+    res.render('search')
+})
 
 app.listen(8080);
