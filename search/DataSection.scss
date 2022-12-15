@@ -1,0 +1,198 @@
+$primary-color:#ffffff;
+$secondary-color:#8E8D8D;
+$third-color:#000000;
+
+.header-data-wraper{
+    background-color: #000000;
+    padding: 1em;
+    z-index: 1;
+    position: relative;
+}
+.data-title-wraper{
+    margin-top: 200px;
+    .data-title-list{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+        color: $primary-color;
+    }
+}
+
+.card-data-list{
+    padding: 10px 0px;
+    background-color: $primary-color;
+    width: 100%;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 50px;
+    .card-data-title{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #000000;
+    }
+   .card-data-sub-title{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 400;
+   }
+   .card-data-wraper-content{
+    padding-inline: 6%;
+   }
+}
+
+.button-pagination {
+    background-color: #74F9F1; 
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+  }
+  .button-pagination:hover{
+    background-color: #000000;
+    color: white;
+  }
+
+  /* From 320px and up */
+@media (min-width: 320px) {
+    
+   }
+   
+   /* From 768px and up */
+   @media (min-width: 768px) {
+     
+   }
+   
+   /* From 1024px and up */
+   @media (min-width: 1024px) {
+     
+   }
+   
+   /* From 1224px and up */
+   @media (min-width: 1224px) {
+    .header-data-wraper{
+        background-color: #000000;
+        padding: 1em;
+        z-index: 1;
+        position: relative;
+    }
+    .data-title-wraper{
+        margin-top: 80px;
+        .data-title-list{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: $primary-color;
+        }
+    }
+    
+    .card-data-list{
+        padding: 10px 0px;
+        background-color: $primary-color;
+        width: 100%;
+        margin: auto;
+        border-radius: 20px;
+        margin-top: 50px;
+        .card-data-title{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+        }
+       .card-data-sub-title{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 16px;
+        color: #000000;
+        font-weight: 400;
+       }
+       .card-data-wraper-content{
+        padding-inline: 6%;
+       }
+    }
+    
+    .button-pagination {
+        background-color: #74F9F1; 
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 25px;
+      }
+      .button-pagination:hover{
+        background-color: #000000;
+        color: white;
+      }
+   }
+   
+   /* From 1824px and up */
+   @media (min-width: 1824px) {
+    .header-data-wraper{
+        background-color: #000000;
+        padding: 1em;
+        z-index: 1;
+        position: relative;
+    }
+    .data-title-wraper{
+        margin-top: 200px;
+        .data-title-list{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: $primary-color;
+        }
+    }
+    
+    .card-data-list{
+        padding: 10px 0px;
+        background-color: $primary-color;
+        width: 100%;
+        margin: auto;
+        border-radius: 20px;
+        margin-top: 50px;
+        .card-data-title{
+            font-family: 'Montserrat',sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+        }
+       .card-data-sub-title{
+        font-family: 'Montserrat',sans-serif;
+        font-size: 16px;
+        color: #000000;
+        font-weight: 400;
+       }
+       .card-data-wraper-content{
+        padding-inline: 6%;
+       }
+    }
+    
+    .button-pagination {
+        background-color: #74F9F1; 
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 25px;
+      }
+      .button-pagination:hover{
+        background-color: #000000;
+        color: white;
+      }
+   }
+   
+   /*  max-width query */
+   /* From 850px and up, until 950px  */
+   @media (min-width: 850px) and (max-width: 950px) {
+    
+   }
