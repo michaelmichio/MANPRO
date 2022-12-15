@@ -61,5 +61,8 @@ app.get('/GrafikBar/', async(req, res) => {
 app.get('/search', async(req, res) => {
     res.render('search')
 })
+app.get('/graph', async(req, res) => {
+    res.render('graph')
+})
 
 app.listen(8080);
