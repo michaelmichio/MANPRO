@@ -58,8 +58,47 @@ app.get('/GrafikBar/', async(req, res) => {
         buku:req.query.Buku
     })
 })
+
+const cariKarakterYangBerinteraksi = (conn,masukan) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            'SELECT target,weight FROM interaksi WHERE book=? AND source LIKE ? GROUP BY target ORDER BY weight DESC',
+            masukan,
+            (err, result) => {
+                if(err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result);
+                }
+            }
+        )
+    })
+}
+
+
+
 app.get('/search', async(req, res) => {
-    res.render('search')
+    if(req.query.Buku!=undefined && req.query.Karakter!=undefined){
+        const conn = await dbConnect();
+        const Karakter='%'+req.query.Karakter+'%'
+        const masukan = [req.query.Buku,Karakter]
+        const hasil = await cariKarakterYangBerinteraksi(conn,masukan);
+        res.render('search',{
+            Buku:req.query.Buku,
+            Karakter:req.query.Karakter,
+            hasil
+        })
+    }
+    else{
+        res.render('search',{
+            Buku:undefined,
+            Karakter:undefined,
+            hasil:undefined
+        })
+    } 
+    
+    
 })
 app.get('/graph', async(req, res) => {
     res.render('graph')

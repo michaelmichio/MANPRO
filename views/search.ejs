@@ -25,13 +25,50 @@
                     <div class='space'>
                         <div class=''>
                         <label class='label-header'>Search Interaksi Karakter tertentu </label>
-                        <select>
-                            <option disabled selected="true">
-                                Pilih Buku Yang Di Inginkan
-                              </option>
-                              <option value=''></option>
+                        <form action="/search" method="get">
+                        <select name="Buku">
+                            <%if(Buku==undefined){%>
+                                <option disabled selected="true">
+                                    Pilih Buku Yang Di Inginkan
+                                  </option>
+                            <%}else{%>
+                                <option disabled>
+                                    Pilih Buku Yang Di Inginkan
+                                  </option>
+                            <%}%>
+                            <%if(Buku=='1'){%>
+                                <option value="1" selected="selected">1</option>
+                            <%}else{%>
+                                <option value="1">1</option>
+                            <%}%>
+                            <%if(Buku=='2'){%>
+                                <option value="2" selected="selected">2</option>
+                            <%}else{%>
+                                <option value="2">2</option>
+                            <%}%>    
+                            <%if(Buku=='3'){%>
+                                <option value="3" selected="selected">3</option>
+                            <%}else{%>
+                                <option value="3">3</option>
+                            <%}%>  
+                            <%if(Buku=='4'){%>
+                                <option value="4" selected="selected">4</option>
+                            <%}else{%>
+                                <option value="4">4</option>
+                            <%}%>
+                            <%if(Buku=='5'){%>
+                                <option value="5" selected="selected">5</option>
+                            <%}else{%>
+                                <option value="5">5</option>
+                            <%}%>    
                         </select>
-                            <input type="text" placeholder="Ketik Interaksi Karakter Yang Di Inginkan.."/>
+                            <%if(Karakter==undefined){%>
+                                <input type="text" name="Karakter" placeholder="Ketik Interaksi Karakter Yang Di Inginkan.."/>
+                            <%}else{%>
+                                <input type="text" name="Karakter" value=<%=Karakter%>>
+                            <%}%>
+                            <button class='button-pagination' type="submit">Search</button>
+                        </form>
                         </div>
                     </div>
                 </div> 
@@ -52,28 +89,39 @@
                 <div class='col-sm-4 col-md-4 col-lg-2'>
                     <div class=''>
                         <h1 class='card-data-title'>No</h1>
-                        <p class='card-data-sub-title'>1.</p>
-                        <p class='card-data-sub-title'>2.</p>
-                        <p class='card-data-sub-title'>3.</p>
-                        <p class='card-data-sub-title'>4.</p>
-                        <p class='card-data-sub-title'>5.</p>
-                        <p class='card-data-sub-title'>6.</p>
-                        <p class='card-data-sub-title'>7.</p>
-                        <p class='card-data-sub-title'>8.</p>
-                        <p class='card-data-sub-title'>9.</p>
-                        <p class='card-data-sub-title'>10.</p>
+                        <%if(hasil==undefined){%>
+                            <p class='card-data-sub-title'>1.</p>
+                        <%}else{%>
+                            <%for(let i=0;i<hasil.length;i++){%>
+                                <p class='card-data-sub-title'><%=i+1%></p>    
+                            <%}%>
+                        <%}%>
+                        
                     </div>
                 </div>
                 <div class='col-sm-4 col-md-4 col-lg-4'>
                     <div class=''>
                         <h1 class='card-data-title'>Berinteraksi Dengan</h1>
-                            <p class='card-data-sub-title'></p>
+                            <%if(hasil!=undefined){%>
+                                <%for(let i of hasil){%>
+                                    <p class='card-data-sub-title'><%=i.target%></p>
+                                <%}%>
+                            <%}else{%>
+                                <p class='card-data-sub-title'></p>
+                            <%}%>   
                         </div>
                 </div>
                 <div class='col-sm-4 col-md-4 col-lg-4'>
                     <div class=''>
                         <h1 class='card-data-title'>Count Interaksi</h1>
-                        <p class='card-data-sub-title'></p>
+                        <%if(hasil!=undefined){%>
+                            <%for(let i of hasil){%>
+                                <p class='card-data-sub-title'><%=i.weight%></p>
+                            <%}%>
+                        <%}else{%>
+                            <p class='card-data-sub-title'></p>
+                        <%}%>   
+                        
                     </div>
                 </div>
             </div>
