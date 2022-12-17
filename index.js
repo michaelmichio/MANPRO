@@ -62,7 +62,23 @@ app.get('/GrafikBar/', async(req, res) => {
 const cariKarakterYangBerinteraksi = (conn,masukan) => {
     return new Promise((resolve, reject) => {
         conn.query(
-            'SELECT target,weight FROM interaksi WHERE book=? AND source LIKE ? GROUP BY target ORDER BY weight DESC',
+            'SELECT target,weight FROM interaksi WHERE book=? AND source LIKE ? GROUP BY target LIMIT ?,?',
+            masukan,
+            (err, result) => {
+                if(err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result);
+                }
+            }
+        )
+    })
+}
+const JumlahKarakterYangBerinteraksi = (conn,masukan) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            'SELECT COUNT(target) as count FROM interaksi WHERE book=? AND source LIKE ? ',
             masukan,
             (err, result) => {
                 if(err) {
@@ -78,23 +94,33 @@ const cariKarakterYangBerinteraksi = (conn,masukan) => {
 
 
 
-app.get('/search', async(req, res) => {
-    if(req.query.Buku!=undefined && req.query.Karakter!=undefined){
+app.get('/search/', async(req, res) => {
+    if(req.query.Buku!=undefined && req.query.Karakter!=undefined && req.query.start!=undefined){
         const conn = await dbConnect();
         const Karakter='%'+req.query.Karakter+'%'
-        const masukan = [req.query.Buku,Karakter]
-        const hasil = await cariKarakterYangBerinteraksi(conn,masukan);
+        const start = parseInt(req.query.start)
+        const stop = 10
+        const masukan1 = [req.query.Buku,Karakter,start,stop]
+        const masukan2 = [req.query.Buku,Karakter]
+        const hasil = await cariKarakterYangBerinteraksi(conn,masukan1);
+        const jumlah = await JumlahKarakterYangBerinteraksi(conn,masukan2);
+        const berapaHalaman = Math.ceil(jumlah[0].count/10)
         res.render('search',{
             Buku:req.query.Buku,
             Karakter:req.query.Karakter,
-            hasil
+            hasil,
+            jumlah,
+            start,
+            stop,
+            berapaHalaman
         })
     }
     else{
         res.render('search',{
             Buku:undefined,
             Karakter:undefined,
-            hasil:undefined
+            hasil:undefined,
+            start:undefined
         })
     } 
     

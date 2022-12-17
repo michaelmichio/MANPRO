@@ -26,6 +26,7 @@
                         <div class=''>
                         <label class='label-header'>Search Interaksi Karakter tertentu </label>
                         <form action="/search" method="get">
+                        <input name="start" value="0" style="display: none">
                         <select name="Buku">
                             <%if(Buku==undefined){%>
                                 <option disabled selected="true">
@@ -92,7 +93,7 @@
                         <%if(hasil==undefined){%>
                             <p class='card-data-sub-title'>1.</p>
                         <%}else{%>
-                            <%for(let i=0;i<hasil.length;i++){%>
+                            <%for(let i=start;i<hasil.length+start;i++){%>
                                 <p class='card-data-sub-title'><%=i+1%></p>    
                             <%}%>
                         <%}%>
@@ -126,8 +127,24 @@
                 </div>
             </div>
             <div class='text-center'>
-                <button class='button-pagination'>Next</button>
-                <button class='button-pagination'>Previos</button>
+                <%if(start==undefined){%>
+                    <button class='button-pagination'>Next</button>
+                    <button class='button-pagination'>Previous</button>
+                <%}else{%>
+                    <%for(let i=0;i<berapaHalaman;i++){%>
+                        <%if(i==(start/10)){%>
+                            <button class='button-pagination' type="submit" style="background-color: rgb(46, 169, 222);">
+                                <a style="color: black" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
+                            </button>
+                        <%}else{%>
+                            <button class='button-pagination' type="submit">
+                                <a style="color: black" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
+                            </button>
+                        <%}%>
+                    <%}%>
+                    
+                <%}%>
+                
             </div>
         </div>
     </div>
