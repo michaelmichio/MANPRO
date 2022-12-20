@@ -1,91 +1,121 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-        <script src="/GrafikBar.js" defer></script>
+
+        <title>Graph</title>
+
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="./css/styles.css" rel="stylesheet" />
+
     </head>
+    
     <body>
 
-    
-        <h1 >Halaman Grafik Bar</h1>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Graph</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/GrafikBar?Buku=1">Graph</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graph">Undirected Graph</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex flex-column h-100 align-items-center justify-content-center">
+                <!-- <h1 >Halaman Grafik Bar</h1> -->
+                <!-- <h3>TOP-10 karakter yang paling banyak berinteraksi dengan karakter lain di buku <%=buku%></h3> -->
+                <canvas class="bg-light bg-opacity-75 h-75" id="hasilGrafik" width="4"></canvas>
+                <form method="get" action="/GrafikBar" onchange="submit()">
+                    <label class="text-light" for="Buku">Silahkan pilih Buku :</label>
+                    <select name="Buku" id="Buku">
+                        <%if(buku==1){%>
+                            <option value="1" selected="selected">1</option>
+                        <%}else{%>
+                            <option value="1">1</option>
+                        <%}%>
+                        <%if(buku==2){%>
+                            <option value="2" selected="selected">2</option>
+                        <%}else{%>
+                            <option value="2">2</option>
+                        <%}%>
+                        <%if(buku==3){%>
+                            <option value="3" selected="selected">3</option>
+                        <%}else{%>
+                            <option value="3">3</option>
+                        <%}%>
+                        <%if(buku==4){%>
+                            <option value="4" selected="selected">4</option>
+                        <%}else{%>
+                            <option value="4">4</option>
+                        <%}%>
+                        <%if(buku==5){%>
+                            <option value="5" selected="selected">5</option>
+                        <%}else{%>
+                            <option value="5">5</option>
+                        <%}%>
+                    </select>
+                </form>
+                <%let x = []%>
+                <%let y = []%>
+                <%for(let i of hasil){%>
+                    <%x.push(i.source)%>
+                    <%y.push(i.weight)%>
+                <%}%>
+            </div>
+        </header>
         
-        <form method="get" action="/GrafikBar" onchange="submit()">
-            <label for="Buku">Silahkan pilih Buku :</label><br>
-            <select name="Buku" id="Buku">
-              <%if(buku==1){%>
-                <option value="1" selected="selected">1</option>
-              <%}else{%>
-                <option value="1">1</option>
-              <%}%>
-              <%if(buku==2){%>
-                <option value="2" selected="selected">2</option>
-              <%}else{%>
-                <option value="2" >2</option>
-              <%}%>
-              <%if(buku==3){%>
-                <option value="3" selected="selected">3</option>
-              <%}else{%>
-                <option value="3">3</option>
-              <%}%>
-              <%if(buku==4){%>
-                <option value="4" selected="selected">4</option>
-              <%}else{%>
-                <option value="4" >4</option>
-              <%}%>
-              <%if(buku==5){%>
-                <option value="5" selected="selected">5</option>
-              <%}else{%>
-                <option value="5" >5</option>
-              <%}%>
-                
-            </select>
-        </form>
-        <%let x = []%>
-        <%let y = []%>
-        <%for(let i of hasil){%>
-            <%x.push(i.source)%>
-            <%y.push(i.weight)%>
-        <%}%>
-        <h3>TOP-10 karakter yang paling banyak berinteraksi dengan karakter lain di buku <%=buku%></h3>
-        <canvas id="hasilGrafik" width="5" height="2"></canvas>
-        
-    <script>
+        <script>
         const ctx = document.getElementById('hasilGrafik').getContext('2d');
         let xValues = <%-JSON.stringify(x)%>;
         let yValues = <%-JSON.stringify(y)%>;
-        // for(let i=0;i<10;i++){
+        // for(let i=0;i<10;i++) {
         //     xValues[0]=xValues[0].replace('&#34;','"')
         // }
-            const barColors = ["purple","purple","purple","purple","purple","purple","purple","purple","purple","purple"];
-       const chart = new Chart(ctx,{
-      type : "bar",
-      data :{
-        labels : xValues,
-        datasets :[{
-          backgroundColor : barColors,
-          data : yValues
-        }]
-      },
-      options:{
-        scales:{
-          yAxes:[{
-            ticks :{
-              beginAtZero : true
+        const barColors = ["purple","purple","purple","purple","purple","purple","purple","purple","purple","purple"];
+        const chart = new Chart(ctx, {
+            type : "bar",
+            data :{
+                labels : xValues,
+                datasets :[{
+                    backgroundColor : barColors,
+                    data : yValues
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                        ticks :{
+                            beginAtZero : true
+                        }
+                    }]
+                },
+                legend :{display : false},
+                title :{
+                    display : true,
+                    text : "Hasil Grafik"
+                }
             }
-          }]
-        },
-        legend : {display : false},
-        title :{
-          display : true,
-          text : "Hasil Grafik"
-        }
-      }
-    })
-    </script>
+        })
+        </script>
     </body>
 </html>
-           

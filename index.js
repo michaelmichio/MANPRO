@@ -1,5 +1,5 @@
 import express from "express";
-import mysql from "mysql"
+import mysql from "mysql";
 import path from "path";
 const app = express();
 
@@ -12,7 +12,7 @@ const pool = mysql.createPool({
     user : 'root',
     password:'',
     database: 'game of thrones',
-    connectionLimit:10
+    connectionLimit: 10
 })
 
 const dbConnect = () => {
@@ -46,7 +46,7 @@ const cariTopTenKarakter = (conn, masukan) => {
 }
 
 app.get('/', async(req, res) => {
-    res.sendFile('index.html', {root:'.'});
+    res.render('index')
 })
 
 app.get('/GrafikBar/', async(req, res) => {
@@ -92,8 +92,6 @@ const JumlahKarakterYangBerinteraksi = (conn,masukan) => {
     })
 }
 
-
-
 app.get('/search/', async(req, res) => {
     if(req.query.Buku!=undefined && req.query.Karakter!=undefined && req.query.start!=undefined){
         const conn = await dbConnect();
@@ -126,6 +124,7 @@ app.get('/search/', async(req, res) => {
     
     
 })
+
 app.get('/graph', async(req, res) => {
     res.render('graph')
 })
