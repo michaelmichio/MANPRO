@@ -150,18 +150,30 @@
                     </div>
                     <div class='text-center'>
                         <%if(start==undefined){%>
-                            <button class='button-pagination'>Next</button>
-                            <button class='button-pagination'>Previous</button>
+                            
                         <%}else{%>
                             <%for(let i=0;i<berapaHalaman;i++){%>
                                 <%if(i==(start/10)){%>
-                                    <button class='button-pagination' type="submit" style="background-color: rgb(46, 169, 222);">
-                                        <a style="color: gray" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
-                                    </button>
+                                    <!-- <button class="button-pagination" type="submit" style="background-color: rgba(10, 11, 11, 0.849);">
+                                        <a style="text-decoration: none;color: white;" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
+                                    </button> -->
+                                    <form method="get"style="display: inline;" action="/search"  >
+                                        <input style="display: none;" name="start" value="<%=i*10%>">
+                                        <input style="display: none;" name="Buku" value="<%=Buku%>">
+                                        <input style="display: none;" name="Karakter" value="<%=Karakter%>">
+                                        <button class="button-pagination kumpul" style="background-color: rgb(74, 80, 80);color: white;"><%=i+1%></button>
+                                    </form>
                                 <%}else{%>
-                                    <button class='button-pagination' type="submit">
-                                        <a style="color: gray" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
-                                    </button>
+                                    <!-- "/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>" -->
+                                    <form method="get"style="display: inline;" action="/search"  >
+                                        <input style="display: none;" name="start" value="<%=i*10%>">
+                                        <input style="display: none;" name="Buku" value="<%=Buku%>">
+                                        <input style="display: none;" name="Karakter" value="<%=Karakter%>">
+                                        <button class="button-pagination kumpul"><%=i+1%></button>
+                                    </form>
+                                    <!-- <button class='button-pagination' type="submit">
+                                        <a style="text-decoration: none;" href="/search?start=<%=i*10%>&Buku=<%=Buku%>&Karakter=<%=Karakter%>"><%=i+1%></a>
+                                    </button> -->
                                 <%}%>
                             <%}%>
                         <%}%>
@@ -169,6 +181,7 @@
                 </div>
             </div>
         </div>
-    
+        <script src="js/scripts.js"></script>
+        <script src="js/search.js"></script>
     </body>
 </html>
