@@ -82,14 +82,10 @@
                         <%y.push(i.target)%>
                     <%}%>
                     const g = new Dracula.Graph
-                    <%let str = ""%>
-                    <%for (let i = 0; i < x.length; i++) {%>
-                        <%if(str != x[i]){%>
-                            str = x[i]
-                            <%for (let j = 0; j < x.length; j++) {%>
-                                <%if(x[i] == y[j]){%>
-                                    g.addEdge('<%=x[i]%>', '<%=y[j]%>')
-                                <%}%>
+                    <%for (let i = 0; i < x.length; i++){%>
+                        <%for (let j = 0; j < x.length; j++){%>
+                            <%if(y[i] == x[j]){%>
+                                g.addEdge('<%=x[i]%>', '<%=y[i]%>')
                             <%}%>
                         <%}%>
                     <%}%>
