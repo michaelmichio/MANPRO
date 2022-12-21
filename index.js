@@ -45,21 +45,7 @@ const cariTopTenKarakter = (conn, masukan) => {
     })
 }
 
-app.get('/', async(req, res) => {
-    res.render('index')
-})
-
-app.get('/GrafikBar/', async(req, res) => {
-    const conn = await dbConnect();
-    const hasil = await cariTopTenKarakter(conn, req.query.Buku);
-    const contoh = "A";
-    res.render('GrafikBar', {
-        hasil,
-        buku:req.query.Buku
-    })
-})
-
-const cariKarakterYangBerinteraksi = (conn,masukan) => {
+const cariKarakterYangBerinteraksi = (conn, masukan) => {
     return new Promise((resolve, reject) => {
         conn.query(
             'SELECT target,weight FROM interaksi WHERE book=? AND source LIKE ? GROUP BY target LIMIT ?,?',
@@ -75,7 +61,8 @@ const cariKarakterYangBerinteraksi = (conn,masukan) => {
         )
     })
 }
-const JumlahKarakterYangBerinteraksi = (conn,masukan) => {
+
+const JumlahKarakterYangBerinteraksi = (conn, masukan) => {
     return new Promise((resolve, reject) => {
         conn.query(
             'SELECT COUNT(target) as count FROM interaksi WHERE book=? AND source LIKE ? ',
@@ -91,6 +78,37 @@ const JumlahKarakterYangBerinteraksi = (conn,masukan) => {
         )
     })
 }
+
+const cariTopTenHubunganKarakter = (conn, masukan) => {
+    return new Promise((resolve, reject) => {
+        conn.query(
+            'SELECT a.source, a.target, a.weight FROM interaksi as a, (SELECT source FROM interaksi WHERE book=? GROUP BY source ORDER BY sum(weight) DESC LIMIT 10) as b WHERE a.book=? AND a.source=b.source',
+            masukan,
+            (err, result) => {
+                if(err) {
+                    reject(err);
+                }
+                else {
+                    resolve(result);
+                }
+            }
+        )
+    })
+}
+
+app.get('/', async(req, res) => {
+    res.render('index')
+})
+
+app.get('/GrafikBar/', async(req, res) => {
+    const conn = await dbConnect();
+    const hasil = await cariTopTenKarakter(conn, req.query.Buku);
+    const contoh = "A";
+    res.render('GrafikBar', {
+        hasil,
+        buku:req.query.Buku
+    })
+})
 
 app.get('/search/', async(req, res) => {
     if(req.query.Buku!=undefined && req.query.Karakter!=undefined && req.query.start!=undefined){
@@ -126,7 +144,13 @@ app.get('/search/', async(req, res) => {
 })
 
 app.get('/graph', async(req, res) => {
-    res.render('graph')
+    const conn = await dbConnect();
+    const masukan = [req.query.Buku, req.query.Buku]
+    const hasil = await cariTopTenHubunganKarakter(conn, masukan);
+    res.render('graph', {
+        hasil,
+        buku:req.query.Buku
+    })
 })
 
 app.listen(8080);
