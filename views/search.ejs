@@ -38,7 +38,7 @@
                         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="/GrafikBar?Buku=1">Graph</a></li>
                         <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/graph">Undirected Graph</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/graph?Buku=1">Undirected Graph</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                                     <label class='label-header'>Search Interaksi Karakter tertentu </label>
                                     <form action="/search" method="get">
                                         <input name="start" value="0" style="display: none">
-                                        <select name="Buku">
+                                        <select class="bg-light bg-opacity-75" name="Buku">
                                             <%if(Buku==undefined){%>
                                                 <option disabled selected="true">Pilih Buku Yang Di Inginkan</option>
                                             <%}else{%>
@@ -92,7 +92,7 @@
                                             <%}%>
                                         </select>
                                         <%if(Karakter==undefined){%>
-                                            <input type="text" name="Karakter" placeholder="Ketik Interaksi Karakter Yang Di Inginkan.."/>
+                                            <input class="bg-light bg-opacity-75" type="text" name="Karakter" placeholder="Ketik Interaksi Karakter Yang Di Inginkan.."/>
                                         <%}else{%>
                                             <input type="text" name="Karakter" value=<%=Karakter%>>
                                         <%}%>
@@ -109,7 +109,7 @@
                 <div class='data-title-wraper'>
                     <h1 class='data-title-list' >Daftar Data Interaksi</h1>
                 </div>
-                <div class='card-data-list'>
+                <div class='card-data-list bg-light  bg-opacity-75'>
                     <div class='row card-data-wraper-content'>
                         <div class='col-sm-4 col-md-4 col-lg-2'>
                             <div class=''>

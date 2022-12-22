@@ -16,6 +16,13 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="./css/styles.css" rel="stylesheet" />
 
+        <style>
+            .masthead{
+                background-image: url('got.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
     </head>
     
     <body>
@@ -44,7 +51,7 @@
             <div class="container px-4 px-lg-5 d-flex flex-column h-100 align-items-center justify-content-center">
                 <!-- <h1 >Halaman Grafik Bar</h1> -->
                 <!-- <h3>TOP-10 karakter yang paling banyak berinteraksi dengan karakter lain di buku <%=buku%></h3> -->
-                <canvas class="bg-light bg-opacity-75 h-75" id="hasilGrafik" width="4"></canvas>
+                <canvas class="bg-light bg-opacity-75 h-75 rounded" id="hasilGrafik" width="4"></canvas>
                 <form method="get" action="/GrafikBar" onchange="submit()">
                     <label class="text-light" for="Buku">Silahkan pilih Buku :</label>
                     <select name="Buku" id="Buku">
